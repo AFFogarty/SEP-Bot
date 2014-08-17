@@ -52,3 +52,12 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Vagrant
+.vagrant/
+
+# Virtual Environments
+linux_env/
+win_env/
+
+# PyCharm
+.idea/
