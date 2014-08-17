@@ -61,3 +61,6 @@ win_env/
 
 # PyCharm
 .idea/
+
+# Authentication
+authentication.py
