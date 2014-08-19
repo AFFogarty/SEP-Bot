@@ -1,3 +1,4 @@
+import time
 from helpers.visited_thread_set import VisitedThreadSet
 from helpers.post_formatter import PostFormatter
 from praw.errors import APIException
@@ -36,14 +37,15 @@ for submission in subreddit.get_hot(limit=300):
         new_post = formatter.relevant_articles_post(results)
 
         # test_thread.add_comment(new_post)
-        # try:
-        submission.add_comment(new_post)
-        already_done.add(submission.id)
-        already_done.save_set()
-        # except APIException:
-        #     error_message = "Error on submission {0}: {1}".format(submission.id, APIException)
-        #     print error_message
-        #     logging.info(error_message)
+        try:
+            submission.add_comment(new_post)
+            already_done.add(submission.id)
+            already_done.save_set()
+        except APIException:
+            error_message = "Error on submission {0}: {1}".format(submission.id, APIException)
+            print error_message
+            logging.info(error_message)
     # time.sleep(1800)
+    time.sleep(5)
 
 already_done.save_set()
