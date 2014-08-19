@@ -10,7 +10,10 @@ class VisitedThreadSet():
         self.load_set()
 
     def load_set(self):
-        file = open(self.file_name, 'r')
+        try:
+            file = open(self.file_name, 'r')
+        except IOError:
+            return
         name_array = json.load(file)
         self.set = set(name_array)
         print self.set
