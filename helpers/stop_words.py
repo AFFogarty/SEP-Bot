@@ -20,6 +20,6 @@ class StopWordFilter():
     def filter(self, word_list):
         output = []
         for word in word_list:
-            if word not in self.stop_word_set:
+            if word not in self.stop_word_set and len(word) > 1:
                 output.append(word)
         return output
