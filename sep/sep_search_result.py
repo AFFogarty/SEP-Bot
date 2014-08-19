@@ -13,8 +13,9 @@ class SEPSearchResult():
         self.set_query(query)
 
     def set_query(self, query):
+        query_no_posessives = re.sub("'s", '', query)
         pattern = re.compile('[^a-zA-Z\d\s]')
-        stripped_query = re.sub(pattern, '', query)
+        stripped_query = re.sub(pattern, '', query_no_posessives)
         self.query = str(stripped_query).lower().split()
 
     @property
