@@ -13,7 +13,9 @@ class SEPSearchResult():
         self.set_query(query)
 
     def set_query(self, query):
-        self.query = str(query).lower().split()
+        pattern = re.compile('[^a-zA-Z\d\s]')
+        stripped_query = re.sub(pattern, '', query)
+        self.query = str(stripped_query).lower().split()
 
     @property
     def url(self):
