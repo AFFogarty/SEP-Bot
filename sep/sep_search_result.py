@@ -30,12 +30,18 @@ class SEPSearchResult():
         # Remvoe bold tags
         text_no_bold = re.sub('</? ?b>', '', page.text)
         text_no_newlines = re.sub('\n', '', text_no_bold)
-        tree = html.fromstring(text_no_newlines)
+        tree = html.fromstring(text_no_newlines.encode('utf-8'))
         titles = tree.xpath("//div[@class='result_title']/a/text()")
         urls = tree.xpath("//div[@class='result_title']/a/@href")
+        # Figure out how many results to return
+        result_length = 0
+        if len(titles) > 5:
+            result_length = 5
+        else:
+            result_length = len(titles)
         # Build the output tuples
         output = []
-        for i in range(len(titles)):
+        for i in range(result_length):
             output.append(
                 {
                     "title": titles[i],
