@@ -22,6 +22,7 @@ class SEPSearchResult():
         url = SEP_URL + "search/searcher.py?query="
         for word in self.query:
             url += word + "+"
+        print url
         return url
 
     def request_results(self):
