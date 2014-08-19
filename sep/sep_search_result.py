@@ -1,4 +1,5 @@
 from lxml import html
+from helpers.stop_words import StopWordFilter
 import re
 import requests
 from constants import SEP_URL
@@ -16,7 +17,8 @@ class SEPSearchResult():
         query_no_posessives = re.sub("'s", '', query)
         pattern = re.compile('[^a-zA-Z\d\s]')
         stripped_query = re.sub(pattern, '', query_no_posessives)
-        self.query = str(stripped_query).lower().split()
+        stop_word_filter = StopWordFilter()
+        self.query = stop_word_filter.filter(str(stripped_query).lower().split())
 
     @property
     def url(self):
