@@ -36,7 +36,7 @@ class SEPSearchResult():
             output.append(
                 {
                     "title": titles[i],
-                    "url": urls[i].lstrip("../")
+                    "url": SEP_URL + urls[i].lstrip("../")
                 }
             )
         self.results = output
