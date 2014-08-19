@@ -20,23 +20,18 @@ sep_bot_subreddit = r.get_subreddit("SEPBot")
 test_thread = r.get_submission(submission_id="2dwcwi")
 formatter = PostFormatter()
 search = None
-
 already_done = VisitedThreadSet()
 
 subreddit = r.get_subreddit('askphilosophy')
 for submission in subreddit.get_hot(limit=300):
     op_text = submission.selftext.lower()
-    # Test if it contains a PRAW-related question
     if not already_done.contains(submission.id):
         print "\n\n-----------------------------------\n\n"
         title = u"{0}".format(submission.title)
         print "\n{0}\n".format(title)
         search = SEPSearchResult(title)
         results = search.request_results()
-
         new_post = formatter.relevant_articles_post(results)
-
-        # test_thread.add_comment(new_post)
         try:
             submission.add_comment(new_post)
             already_done.add(submission.id)
@@ -45,7 +40,5 @@ for submission in subreddit.get_hot(limit=300):
             error_message = "Error on submission {0}: {1}".format(submission.id, APIException)
             print error_message
             logging.info(error_message)
-    # time.sleep(1800)
     time.sleep(5)
-
 already_done.save_set()
