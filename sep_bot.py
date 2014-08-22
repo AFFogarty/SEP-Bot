@@ -40,5 +40,6 @@ for submission in subreddit.get_hot(limit=300):
             error_message = "Error on submission {0}: {1}".format(submission.id, e)
             print error_message
             logging.info(error_message)
-        time.sleep(5)
+    time.sleep(600)
+    # time.sleep(1800)
 already_done.save_set()
