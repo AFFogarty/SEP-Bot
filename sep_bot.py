@@ -23,7 +23,8 @@ search = None
 already_done = VisitedThreadSet()
 
 subreddit = r.get_subreddit('askphilosophy')
-for submission in subreddit.get_hot(limit=300):
+# while True:
+for submission in subreddit.get_hot(limit=10):
     op_text = submission.selftext.lower()
     if not already_done.contains(submission.id):
         print "\n\n-----------------------------------\n\n"
