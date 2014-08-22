@@ -36,8 +36,8 @@ for submission in subreddit.get_hot(limit=300):
             submission.add_comment(new_post)
             already_done.add(submission.id)
             already_done.save_set()
-        except APIException:
-            error_message = "Error on submission {0}: {1}".format(submission.id, APIException)
+        except APIException, e:
+            error_message = "Error on submission {0}: {1}".format(submission.id, e)
             print error_message
             logging.info(error_message)
         time.sleep(5)
