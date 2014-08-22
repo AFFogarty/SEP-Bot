@@ -28,7 +28,7 @@ for submission in subreddit.get_hot(limit=300):
     if not already_done.contains(submission.id):
         print "\n\n-----------------------------------\n\n"
         title = u"{0}".format(submission.title)
-        print "\n{0}\n".format(title)
+        print "\n{0}\n".format(title.encode('utf-8'))
         search = SEPSearchResult(title)
         results = search.request_results()
         new_post = formatter.relevant_articles_post(results)
